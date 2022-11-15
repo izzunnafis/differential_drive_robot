@@ -1,0 +1,19 @@
+<launch>
+    <arg name="description_file" default="$(find robot_description)/diff_drive_description/robot.urdf.xacro"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(arg description_file)"/>
+    <!-- <param name="robot_description" command="cat $(arg description_file)" /> -->
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -param robot_description -model my_robot"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+        <param name="use_gui" value="true"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/rviz/rviz_viz.rviz"/>
+</launch>

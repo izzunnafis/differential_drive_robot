@@ -1,0 +1,12 @@
+.vscode/**
+**.vscode
+loadscanner_api/3d/3d_data/**
+firmware/firmware/.pio/**
+**.pyc
+**.cam
+build/
+devel/
+**.workspace
+**.catkin_workspace
+**.user
+
